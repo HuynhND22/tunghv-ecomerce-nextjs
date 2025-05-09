@@ -1,7 +1,6 @@
 // require('dotenv').config();
 import * as dotenv from "dotenv";
 dotenv.config();
-console.log("POSTGRES_HOST:", process.env.POSTGRES_URL);
 import 'reflect-metadata';
 
 import { DataSource } from 'typeorm';
@@ -34,11 +33,11 @@ import { DataSource } from 'typeorm';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: process.env.POSTGRES_HOST || 'localhost',
+  host: process.env.PGHOST || 'localhost',
   // url: process.env.POSTGRES_URL, // Lấy URL từ biến môi trường
   ssl: false, // Sử dụng SSL
-  port: Number(process.env.POSTGRES_PORT),
-  username: process.env.POSTGRES_USERNAME,
+  port: Number(process.env.POSTGRES_PORT) || 5432,
+  username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DATABASE,
   //  requestTimeout: 60000,
